@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Clan de Ítaca</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --parchment: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --ember: #c45c26;
+    --stone: #6b6458;
+    --cream: #faf7f2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 80px 0;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.35) saturate(0.8);
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(14,13,11,0.7) 70%, var(--ink) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,240,232,0.65);
+    margin-top: 20px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 48px;
+    opacity: 0.6;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.75);
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* PULLQUOTE */
+  .pullquote-section {
+    background: linear-gradient(135deg, #1a1712 0%, #0e0d0b 100%);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 100px 40px;
+  }
+
+  .pullquote {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pullquote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--parchment);
+    margin-bottom: 24px;
+  }
+
+  .pullquote blockquote span {
+    color: var(--gold-light);
+  }
+
+  .pullquote cite {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-style: normal;
+  }
+
+  /* PROBLEM */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .problem-card {
+    background: #161410;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.3s;
+  }
+
+  .problem-card:hover {
+    border-color: rgba(201,168,76,0.2);
+  }
+
+  .problem-card .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .problem-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--parchment);
+  }
+
+  .problem-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* IMAGE BREAK */
+  .image-break {
+    width: 100%;
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-break img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) saturate(0.7);
+  }
+
+  .image-break-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(14,13,11,0.8) 0%, transparent 50%, rgba(14,13,11,0.8) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-break-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+    color: var(--parchment);
+    max-width: 700px;
+    padding: 0 40px;
+    line-height: 1.3;
+  }
+
+  .image-break-text em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* PROGRAM */
+  .program-timeline {
+    margin-top: 64px;
+    position: relative;
+  }
+
+  .program-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3), transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 60px;
+    align-items: start;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .timeline-item:nth-child(even) .timeline-empty {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: 8px auto 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-content {
+    padding: 0 32px;
+  }
+
+  .timeline-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--parchment);
+  }
+
+  .timeline-content .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 3px 10px;
+    margin-bottom: 12px;
+  }
+
+  .timeline-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.6);
+  }
+
+  /* ACTIVITIES */
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 64px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .activity-card {
+    background: var(--ink);
+    padding: 36px 28px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .activity-card:hover {
+    background: #161410;
+  }
+
+  .activity-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .activity-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--parchment);
+  }
+
+  .activity-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* WHO */
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .who-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .who-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .who-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+
+  .who-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .who-card ul li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .who-card ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* MODEL */
+  .model-section {
+    background: #0a0908;
+    padding: 100px 0;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .model-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .model-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+    margin-top: 64px;
+  }
+
+  .stat {
+    background: #0a0908;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+  }
+
+  /* FINANCE */
+  .finance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .finance-card {
+    background: #161410;
+    padding: 36px;
+  }
+
+  .finance-card h3 {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .finance-card ul {
+    list-style: none;
+  }
+
+  .finance-card ul li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .finance-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ember);
+    font-size: 12px;
+  }
+
+  /* CTA */
+  .cta-section {
+    background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 160px 40px;
+    text-align: center;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(14,13,11,0.82);
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .cta-inner p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    margin-bottom: 48px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 16px 40px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--parchment);
+    border: 1px solid rgba(245,240,232,0.3);
+    padding: 16px 40px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(245,240,232,0.6); }
+
+  /* FOOTER */
+  footer {
+    background: #070605;
+    padding: 48px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  footer .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  /* FULL-WIDTH IMAGE */
+  .full-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.45) saturate(0.7);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    section { padding: 64px 24px; }
+    .problem-grid, .who-grid, .finance-grid { grid-template-columns: 1fr; }
+    .activities-grid { grid-template-columns: 1fr 1fr; }
+    .model-stats { grid-template-columns: 1fr 1fr; }
+    .program-timeline::before { display: none; }
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-dot { display: none; }
+    .timeline-content { padding: 0; margin-bottom: 40px; }
+    .timeline-item:nth-child(even) .timeline-content { grid-column: 1; }
+    .timeline-item:nth-child(even) .timeline-empty { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Programa de Mentoría · 2025</p>
+    <h1 class="hero-title">El Clan de<br><em>Ítaca</em></h1>
+    <p class="hero-subtitle">Un programa de mentoría para jóvenes en su rito de paso hacia la adultez</p>
+    <span class="hero-tag">Executive Summary · Versión 0.1</span>
+  </div>
+</div>
+
+<!-- PULLQUOTE -->
+<div class="pullquote-section">
+  <div class="pullquote">
+    <blockquote>
+      "Un niño pregunta: <span>¿qué tiene este mundo para ofrecerme?</span><br>
+      Un hombre pregunta: <span>¿qué necesita este mundo de mí?</span>"
+    </blockquote>
+    <cite>El principio central del Clan de Ítaca</cite>
+  </div>
+</div>
+
+<!-- EL PROBLEMA -->
+<section>
+  <p class="section-label">El Contexto</p>
+  <h2 class="section-title">Los hombres de hoy <em>llegaron solos</em></h2>
+  <p class="section-body">
+    Los ritos de paso casi han desaparecido. Nadie le enseña a un joven cómo manejar el dolor, 
+    la responsabilidad, o lo que significa pertenecer a algo más grande que uno mismo. 
+    El resultado: generaciones de hombres que cargan una herida sin nombre.
+  </p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="number">01</div>
+      <h3>La herida no reconocida</h3>
+      <p>Generaciones de hombres que esconden su vulnerabilidad porque nadie les mostró cómo integrarla. La máscara se convierte en identidad.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">02</div>
+      <h3>Sin iniciación</h3>
+      <p>Los ritos de paso — presentes en toda cultura humana — han desaparecido. Los jóvenes entran a la adultez sin ser "recibidos" por nadie.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">03</div>
+      <h3>Comunidades tóxicas</h3>
+      <p>El vacío lo llenan comunidades como la "black pill" que ofrecen identidad a cambio de nihilismo, fatalismo y aislamiento.</p>
+    </div>
+    <div class="problem-card">
+      <div class="number">04</div>
+      <h3>El extranjero sin raíces</h3>
+      <p>Para jóvenes en comunidades de inmigrantes, la crisis se duplica: sin pertenencia cultural, sin modelos a seguir en su nuevo mundo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="image-break">
+  <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1600&q=80" alt="Aventura en la naturaleza">
+  <div class="image-break-overlay">
+    <p class="image-break-text">
+      "Los hombres deben ser <em>heridos</em> para verdaderamente entrar al mundo, 
+      para tener la consciencia despierta, para emprender la tarea heroica 
+      de convertirse en dueños de su propio destino."
+    </p>
+  </div>
+</div>
+
+<!-- LA SOLUCIÓN -->
+<section>
+  <p class="section-label">La Propuesta</p>
+  <h2 class="section-title">¿Qué es el <em>Clan de Ítaca?</em></h2>
+  <p class="section-body">
+    Un programa de mentoría estructurado para jóvenes de 12 a 17 años. Una hermandad donde 
+    hombres que ya caminaron el camino acompañan a los que apenas comienzan. 
+    Aventura, conversación, desafío y comunidad — reunidos cada dos semanas.
+  </p>
+</section>
+
+<!-- PROGRAMA -->
+<section style="padding-top: 0;">
+  <div class="divider"></div>
+  <p class="section-label">Estructura del Programa</p>
+  <h2 class="section-title">El <em>Camino</em></h2>
+  <div class="program-timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <span class="tag">Año 1</span>
+        <h3>La Partida</h3>
+        <p>El joven entra al clan, conoce a su mentor y a su grupo. Se establecen compromisos. El enfoque es exploración: del mundo exterior y del interior.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="tag">Año 2</span>
+        <h3>La Prueba</h3>
+        <p>Desafíos más profundos. Proyectos personales. El joven comienza a tomar responsabilidad real dentro del grupo y en su comunidad.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <span class="tag">Año 3</span>
+        <h3>El Regreso</h3>
+        <p>El miembro senior acompaña a los nuevos. La transformación se completa al enseñar lo aprendido. De aprendiz a guía.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACTIVIDADES -->
+<section style="padding-top: 0;">
+  <div class="divider"></div>
+  <p class="section-label">Qué Hacemos</p>
+  <h2 class="section-title">Cada <em>encuentro cuenta</em></h2>
+  <p class="section-body">Cada dos semanas, el clan se reúne. Las actividades varían, pero todas tienen un propósito claro.</p>
+  <div class="activities-grid">
+    <div class="activity-card">
+      <span class="activity-icon">🏔️</span>
+      <h3>Excursiones</h3>
+      <p>En alianza con organizaciones especializadas. Montaña, ciudad, naturaleza. El cuerpo en movimiento, la mente despierta.</p>
+    </div>
+    <div class="activity-card">
+      <span class="activity-icon">🔥</span>
+      <h3>Círculos de Conversación</h3>
+      <p>Temas difíciles en un espacio seguro. Identidad, miedo, ambición, relaciones. Lo que nadie más les pregunta.</p>
+    </div>
+    <div class="activity-card">
+      <span class="activity-icon">🌆</span>
+      <h3>Socialización Real</h3>
+      <p>Salir al mundo. Hablar con desconocidos. Navegar situaciones sociales con confianza y gracia.</p>
+    </div>
+    <div class="activity-card">
+      <span class="activity-icon">⚒️</span>
+      <h3>Proyectos</h3>
+      <p>Crear algo real. Desde un negocio pequeño hasta un proyecto comunitario. Responsabilidad con consecuencias reales.</p>
+    </div>
+    <div class="activity-card">
+      <span class="activity-icon">📖</span>
+      <h3>Mentorías 1:1</h3>
+      <p>Cada joven tiene un mentor asignado. El hilo conductor de todo el programa. Una relación genuina.</p>
+    </div>
+    <div class="activity-card">
+      <span class="activity-icon">🎯</span>
+      <h3>Ritos de Paso</h3>
+      <p>Momentos marcados. Celebraciones del crecimiento. El clan reconoce en voz alta quién ya no eres.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK 2 -->
+<img class="full-image" src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600&q=80" alt="Jóvenes en aventura">
+
+<!-- QUIÉN -->
+<section>
+  <p class="section-label">La Comunidad</p>
+  <h2 class="section-title">¿Para quién <em>es esto?</em></h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <h3>Los Jóvenes</h3>
+      <ul>
+        <li>Hombres de 12 a 17 años</li>
+        <li>De cualquier origen o contexto</li>
+        <li>Especialmente jóvenes en comunidades inmigrantes</li>
+        <li>Con ganas de pertenecer a algo real</li>
+        <li>Curiosos, aunque no lo sepan aún</li>
+      </ul>
+    </div>
+    <div class="who-card">
+      <h3>Los Mentores</h3>
+      <ul>
+        <li>Hombres que ya caminaron su camino</li>
+        <li>Extranjeros que buscan integrarse dando</li>
+        <li>No necesitan ser expertos — necesitan ser honestos</li>
+        <li>Comprometidos con al menos un año</li>
+        <li>Dispuestos a ser transformados también</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MODELO -->
+<div class="model-section">
+  <div class="model-inner">
+    <p class="section-label" style="text-align:center;">El Modelo</p>
+    <h2 class="section-title">Simple por <em>diseño</em></h2>
+    <div class="model-stats">
+      <div class="stat">
+        <div class="stat-number">12–17</div>
+        <div class="stat-label">Años de edad</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1–3</div>
+        <div class="stat-label">Años de programa</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">c/2</div>
+        <div class="stat-label">Semanas nos vemos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Impacto generacional</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANZAS -->
+<section>
+  <p class="section-label">Modelo Financiero</p>
+  <h2 class="section-title">Gratuito para <em>quienes importan</em></h2>
+  <p class="section-body">La visión es que el costo nunca sea una barrera. Ni para los jóvenes, ni para los mentores.</p>
+  <div class="finance-grid">
+    <div class="finance-card">
+      <h3>Ingresos Potenciales</h3>
+      <ul>
+        <li>Fundraising comunitario</li>
+        <li>Sponsors corporativos locales</li>
+        <li>Grants de organizaciones sin fines de lucro</li>
+        <li>Donaciones de alumni del programa</li>
+        <li>Partnerships con marcas de outdoor/aventura</li>
+      </ul>
+    </div>
+    <div class="finance-card">
+      <h3>Hacia los Participantes</h3>
+      <ul>
+        <li>Programa gratuito para jóvenes 12–17</li>
+        <li>Pequeño stipend para equipo básico</li>
+        <li>Sin costo para mentores voluntarios</li>
+        <li>Excursiones cubiertas por el fondo</li>
+        <li>Modelo a definir con la comunidad</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Este proyecto necesita <em>tu voz</em></h2>
+    <p>
+      Esto es versión 0.1. Hay muchas preguntas sin respuesta y decisiones que tomar juntos. 
+      Si algo de esto te resonó — como mentor, como padre, como alguien que también estuvo perdido — 
+      queremos escucharte.
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:hola@clandeitaca.org" class="btn-primary">Quiero participar</a>
+      <a href="#" class="btn-secondary">Dame feedback</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">El Clan de Ítaca</div>
+  <p>clandeitaca.org · @clandeitaca · v0.1 · 2025</p>
+</footer>
+
+</body>
+</html>
