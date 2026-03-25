@@ -26,7 +26,6 @@
     overflow-x: hidden;
   }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -118,7 +117,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* SECTIONS */
   section {
     max-width: 900px;
     margin: 0 auto;
@@ -202,6 +200,90 @@
     font-style: normal;
   }
 
+  /* ÍTACA REFERENCE SECTION */
+  .itaca-section {
+    background: var(--ink);
+    padding: 100px 40px;
+  }
+
+  .itaca-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    gap: 0 64px;
+    align-items: center;
+  }
+
+  .itaca-divider-line {
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3), transparent);
+    align-self: stretch;
+  }
+
+  .itaca-myth {
+    text-align: right;
+  }
+
+  .itaca-myth .eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .itaca-myth h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .itaca-myth p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.55);
+  }
+
+  .itaca-meaning .eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .itaca-meaning p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 20px;
+  }
+
+  .itaca-meaning .poem {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.8;
+    border-left: 1px solid rgba(201,168,76,0.3);
+    padding-left: 20px;
+    margin-top: 24px;
+  }
+
+  .itaca-meaning .poem em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
   /* PROBLEM */
   .problem-grid {
     display: grid;
@@ -217,9 +299,7 @@
     transition: border-color 0.3s;
   }
 
-  .problem-card:hover {
-    border-color: rgba(201,168,76,0.2);
-  }
+  .problem-card:hover { border-color: rgba(201,168,76,0.2); }
 
   .problem-card .number {
     font-family: 'Cormorant Garamond', serif;
@@ -270,7 +350,7 @@
 
   .image-break-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 5vw, 52px);
+    font-size: clamp(22px, 4vw, 44px);
     font-weight: 300;
     font-style: italic;
     text-align: center;
@@ -310,16 +390,6 @@
     align-items: start;
   }
 
-  .timeline-item:nth-child(even) .timeline-content {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .timeline-item:nth-child(even) .timeline-empty {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
   .timeline-dot {
     width: 12px;
     height: 12px;
@@ -330,9 +400,7 @@
     z-index: 1;
   }
 
-  .timeline-content {
-    padding: 0 32px;
-  }
+  .timeline-content { padding: 0 32px; }
 
   .timeline-content h3 {
     font-family: 'Cormorant Garamond', serif;
@@ -375,9 +443,7 @@
     transition: background 0.3s;
   }
 
-  .activity-card:hover {
-    background: #161410;
-  }
+  .activity-card:hover { background: #161410; }
 
   .activity-icon {
     font-size: 32px;
@@ -430,10 +496,7 @@
     color: var(--gold-light);
   }
 
-  .who-card ul {
-    list-style: none;
-    padding: 0;
-  }
+  .who-card ul { list-style: none; padding: 0; }
 
   .who-card ul li {
     font-size: 15px;
@@ -515,9 +578,7 @@
     margin-bottom: 20px;
   }
 
-  .finance-card ul {
-    list-style: none;
-  }
+  .finance-card ul { list-style: none; }
 
   .finance-card ul li {
     font-size: 15px;
@@ -618,7 +679,6 @@
 
   .btn-secondary:hover { border-color: rgba(245,240,232,0.6); }
 
-  /* FOOTER */
   footer {
     background: #070605;
     padding: 48px 40px;
@@ -641,7 +701,6 @@
     letter-spacing: 0.1em;
   }
 
-  /* FULL-WIDTH IMAGE */
   .full-image {
     width: 100%;
     height: 400px;
@@ -650,7 +709,6 @@
     filter: brightness(0.45) saturate(0.7);
   }
 
-  /* RESPONSIVE */
   @media (max-width: 700px) {
     section { padding: 64px 24px; }
     .problem-grid, .who-grid, .finance-grid { grid-template-columns: 1fr; }
@@ -660,8 +718,9 @@
     .timeline-item { grid-template-columns: 1fr; }
     .timeline-dot { display: none; }
     .timeline-content { padding: 0; margin-bottom: 40px; }
-    .timeline-item:nth-child(even) .timeline-content { grid-column: 1; }
-    .timeline-item:nth-child(even) .timeline-empty { display: none; }
+    .itaca-inner { grid-template-columns: 1fr; gap: 48px 0; }
+    .itaca-divider-line { display: none; }
+    .itaca-myth { text-align: left; }
   }
 </style>
 </head>
@@ -687,6 +746,31 @@
       Un hombre pregunta: <span>¿qué necesita este mundo de mí?</span>"
     </blockquote>
     <cite>El principio central del Clan de Ítaca</cite>
+  </div>
+</div>
+
+<!-- ¿QUÉ ES ÍTACA? -->
+<div class="itaca-section">
+  <div class="itaca-inner">
+    <div class="itaca-myth">
+      <span class="eyebrow">La Referencia</span>
+      <h2>Ítaca</h2>
+      <p>En la mitología griega, Ítaca es la isla natal de Odiseo — el hogar al que dedica veinte años de su vida intentando regresar, enfrentando tormentas, monstruos y la tentación de quedarse.</p>
+    </div>
+    <div class="itaca-divider-line"></div>
+    <div class="itaca-meaning">
+      <span class="eyebrow">Por qué importa</span>
+      <p>El poeta griego Kaváfis escribió que Ítaca no es el destino — es el pretexto para el viaje. Lo que te forma no es llegar, sino todo lo que encuentras en el camino.</p>
+      <p>Para nosotros, Ítaca representa ese lugar interior que cada joven debe encontrar: quién es, qué le importa, a qué pertenece.</p>
+      <div class="poem">
+        "Ten siempre a Ítaca en la mente.<br>
+        Llegar allí es tu <em>destino</em>.<br>
+        Mas no apresures el viaje.<br>
+        Mejor que se extienda <em>largos años</em>."<br>
+        <br>
+        — Kaváfis, <em>Ítaca</em> (1911)
+      </div>
+    </div>
   </div>
 </div>
 
@@ -859,7 +943,7 @@
 <div class="model-section">
   <div class="model-inner">
     <p class="section-label" style="text-align:center;">El Modelo</p>
-    <h2 class="section-title">Diseño <em>Simple</em></h2>
+    <h2 class="section-title">Simple por <em>diseño</em></h2>
     <div class="model-stats">
       <div class="stat">
         <div class="stat-number">12–17</div>
@@ -884,7 +968,7 @@
 <!-- FINANZAS -->
 <section>
   <p class="section-label">Modelo Financiero</p>
-  <h2 class="section-title">Gratuito</h2>
+  <h2 class="section-title">Gratuito para <em>quienes importan</em></h2>
   <p class="section-body">La visión es que el costo nunca sea una barrera. Ni para los jóvenes, ni para los mentores.</p>
   <div class="finance-grid">
     <div class="finance-card">
@@ -919,14 +1003,18 @@
       Si algo de esto te resonó — como mentor, como padre, como alguien que también estuvo perdido — 
       queremos escucharte.
     </p>
-    <!-- <div class="cta-buttons">
-      <a href="/cdn-cgi/l/email-protection#d1b9bebdb091b2bdb0bfb5b4b8a5b0b2b0ffbea3b6" class="btn-primary">Quiero participar</a>
+    <div class="cta-buttons">
+      <a href="mailto:hola@clandeitaca.org" class="btn-primary">Quiero participar</a>
       <a href="#" class="btn-secondary">Dame feedback</a>
-    </div> -->
+    </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="logo">El Clan de Ítaca</div>
-  <p>clandeitaca.org · @clandeitaca · v
+  <p>clandeitaca.org · @clandeitaca · v0.1 · 2027</p>
+</footer>
+
+</body>
+</html>
